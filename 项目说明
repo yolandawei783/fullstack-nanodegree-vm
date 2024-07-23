@@ -1,0 +1,189 @@
+Fyyur Project Details Fyyur 项目详情
+Introduction 介绍
+Fyyur is a musical venue and artist booking site that facilitates the discovery and bookings of shows between local performing artists and venues. This site lets you list new artists and venues, discover them, and list shows with artists as a venue owner.
+Fyyur 是一个音乐场所和艺术家预订网站，促进当地表演艺术家和场地之间演出的发现和预订。通过此网站，您可以列出新的艺术家和场地，发现它们，并列出以场地所有者身份出现的艺术家的节目。
+
+Your job is to build out the data models to power the API endpoints for the Fyyur site by connecting to a PostgreSQL database for storing, querying, and creating information about artists and venues on Fyyur.
+您的工作是通过连接到 PostgreSQL 数据库来存储、查询和创建有关 Fyyur 上的艺术家和场地的信息，从而构建数据模型，为 Fyyur 站点的 API 端点提供支持。
+
+Overview 概述
+This app is nearly complete. It is only missing one thing… real data! While the views and controllers are defined in this application, it is missing models and model interactions to be able to store retrieve, and update data from a database. By the end of this project, you should have a fully functioning site that is at least capable of doing the following, if not more, using a PostgreSQL database:
+这个应用程序即将完成。它只缺少一件事......真实数据！虽然视图和控制器在此应用程序中定义，但它缺少模型和模型交互，以便能够从数据库中存储、检索和更新数据。在本项目结束时，您应该拥有一个功能齐全的站点，该站点至少能够使用 PostgreSQL 数据库执行以下操作（如果不是更多的话）：
+
+creating new venues, artists, and creating new shows.
+创造新的场地、艺术家和创造新的节目。
+searching for venues and artists.
+寻找场地和艺术家。
+learning more about a specific artist or venue.
+了解有关特定艺术家或场地的更多信息。
+We want Fyyur to be the next new platform that artists and musical venues can use to find each other, and discover new music shows. Let's make that happen!
+我们希望 Fyyur 成为艺术家和音乐场所可以用来寻找彼此并发现新音乐节目的下一个新平台。让我们实现它！
+
+Tech Stack (Dependencies)
+技术栈 （依赖）
+1. Backend Dependencies 1. 后端依赖
+Our tech stack will include the following:
+我们的技术堆栈将包括以下内容：
+
+A virtual environment provided in the workspace (if working locally, see README)
+工作区中提供的虚拟环境（如果在本地工作，请参阅自述文件）
+SQLAlchemy ORM to be our ORM library of choice
+SQLAlchemy ORM 将成为我们首选的 ORM 库
+PostgreSQL as our database of choice
+PostgreSQL 作为我们首选的数据库
+Python3 and Flask as our server language and server framework
+Python3 和 Flask 作为我们的服务器语言和服务器框架
+Flask-Migrate for creating and running schema migrations You can download and install the dependencies mentioned above using pip as:
+Flask-Migrate 用于创建和运行架构迁移 您可以使用 pip 以下方式下载并安装上述依赖项：
+pip install SQLAlchemy
+pip install --upgrade pip
+pip install postgres
+pip install Flask
+pip install Flask-Migrate
+Note - If we do not mention the specific version of a package, then the default latest stable package will be installed.
+注意 - 如果我们没有提及软件包的特定版本，则将安装默认的最新稳定软件包。
+2. Frontend Dependencies
+2. 前端依赖
+You must have the HTML, CSS, and Javascript with Bootstrap 3(opens in a new tab) for our website's frontend. If you are working locally, further instructions are contained in the repo README file.
+您必须拥有 HTML、CSS 和 Javascript 以及 Bootstrap 3 作为我们网站的前端。如果您在本地工作，则存储库 README 文件中包含更多说明。
+
+Install Bootstrap 3(opens in a new tab) for the website's frontend:
+为网站的前端安装 Bootstrap 3：
+
+npm init -y
+npm install bootstrap@3
+Main Files: Project Structure
+主文件：项目结构
+  ├── README.md
+  ├── app.py *** the main driver of the app. Includes your SQLAlchemy models.
+                    "python app.py" to run after installing dependencies
+  ├── config.py *** Database URLs, CSRF generation, etc
+  ├── error.log
+  ├── forms.py *** Your forms
+  ├── requirements.txt *** The dependencies we need to install with "pip3 install -r requirements.txt"
+  ├── static
+  │   ├── css 
+  │   ├── font
+  │   ├── ico
+  │   ├── img
+  │   └── js
+  └── templates
+      ├── errors
+      ├── forms
+      ├── layouts
+      └── pages
+Overall: 整体：
+
+Models are located in the MODELS section of app.py.
+模型位于 MODELS 的部分 app.py 。
+Controllers are also located in app.py.
+控制器也位于 app.py 中。
+The web frontend is located in templates/, which builds static assets deployed to the web server at static/.
+Web 前端位于 templates/ 中，用于构建部署到 Web 服务器的 static/ 静态资产。
+Web forms for creating data are located in form.py
+用于创建数据的 Web 表单位于 form.py
+Highlight folders: 突出显示文件夹：
+
+templates/pages -- (Already complete.) Defines the pages that are rendered to the site. These templates render views based on data passed into the template’s view, in the controllers defined in app.py. These pages successfully represent the data to the user, and are already defined for you.
+templates/pages -- （已完成。定义呈现到网站的页面。这些模板根据传递到模板视图的数据呈现视图，这些数据位于 中 app.py 定义的控制器中。这些页面成功地向用户表示数据，并且已经为您定义了数据。
+templates/layouts -- (Already complete.) Defines the layout that a page can be contained in to define footer and header code for a given page.
+templates/layouts -- （已完成。定义页面可以包含的布局，以定义给定页面的页脚和页眉代码。
+templates/forms -- (Already complete.) Defines the forms used to create new artists, shows, and venues.
+templates/forms -- （已完成。定义用于创建新艺术家、表演和场地的窗体。
+app.py -- (Missing functionality.) Defines routes that match the user’s URL, and controllers which handle data and renders views to the user. This is the main file you will be working on to connect to and manipulate the database and render views with data to the user, based on the URL.
+app.py -- （缺少功能。定义与用户 URL 匹配的路由，以及处理数据并向用户呈现视图的控制器。这是您将要处理的主文件，用于连接和操作数据库，并根据 URL 向用户呈现包含数据的视图。
+Models in app.py -- (Missing functionality.) Defines the data models that set up the database tables.
+中的 app.py 模型 -- （缺少功能。定义用于设置数据库表的数据模型。
+config.py -- (Missing functionality.) Stores configuration variables and instructions, separate from the main application code. This is where you will need to connect to the database.
+config.py -- （缺少功能。存储配置变量和指令，与主应用程序代码分开。这是您需要连接到数据库的位置。
+Instructions 指示
+Understand the Project Structure (explained above) and where important files are located.
+了解项目结构（如上所述）以及重要文件所在的位置。
+Build and run local development following the Development Setup steps below.
+按照下面的开发设置步骤构建并运行本地开发。
+Fill in the missing functionality in this application: this application currently pulls in fake data and needs to now connect to a real database and talk to a real backend.
+填补此应用程序中缺少的功能：此应用程序当前提取虚假数据，现在需要连接到真实数据库并与真实后端通信。
+Fill out every TODO section throughout the codebase. We suggest going in order of the following:
+填写整个代码库的每个 TODO 部分。我们建议按以下顺序进行：
+Connect to a database in config.py. A project submission that uses a local database connection is fine. For a refresher on setting up Postgres and connecting databases, refer to the SQLAlchemy Basics lesson. When working in the project classroom, the default user is postgres , there is no password, localhost is 127.0.0.0 and the default port for database connections is 5432.
+连接到 中的 config.py 数据库。使用本地数据库连接的项目提交是可以的。有关设置 Postgres 和连接数据库的复习，请参阅 SQLAlchemy 基础知识课程。在项目教室中工作时，默认用户是 postgres ，没有密码，localhost 是 127.0.0.0，数据库连接的默认端口是 5432。
+Using SQLAlchemy, set up normalized models for the objects we support in our web app in the Models section of app.py. Check out the sample pages provided at /artists/1, /venues/1, and /shows for examples of the data we want to model, using all of the learned best practices in database schema design. Implement missing model properties and relationships using database migrations via Flask-Migrate.
+使用 SQLAlchemy，在 的“模型”部分中为我们在 Web 应用中支持的 app.py 对象设置规范化模型。查看 /artists/1、/venues/1 和 /shows 中提供的示例页面，了解我们想要建模的数据示例，使用数据库模式设计中学到的所有最佳实践。通过 Flask-Migrate 使用数据库迁移实现缺失的模型属性和关系。
+Implement form submissions for creating new Venues, Artists, and Shows. There should be proper constraints, powering the /create endpoints that serve the create form templates, to avoid duplicate or nonsensical form submissions. Submitting a form should create proper new records in the database.
+实施表单提交以创建新的场地、艺术家和节目。应该有适当的约束，为为创建表单模板提供服务的 /create 终结点提供支持，以避免重复或无意义的表单提交。提交表单应在数据库中创建适当的新记录。
+Implement the controllers for listing venues, artists, and shows. Note the structure of the mock data used. We want to keep the structure of the mock data.
+实现用于列出场地、艺术家和演出的控制器。请注意所用模拟数据的结构。我们希望保留模拟数据的结构。
+Implement search, powering the /search endpoints that serve the application's search functionalities.
+实现搜索，为 /search 提供应用程序搜索功能的终结点提供支持。
+Serve venue and artist detail pages, powering the <venue|artist>/<id> endpoints that power the detail pages.
+提供场地和艺人详细信息页面，为为详细信息页面提供支持的 <venue|artist>/<id> 端点提供支持。
+Data Handling with Flask-WTF Forms
+使用 Flask-WTF 表单处理数据
+
+The starter codes use an interactive form builder library called Flask-WTF(opens in a new tab). This library provides useful functionality, such as form validation and error handling. You can peruse the Show, Venue, and Artist form builders in forms.py file. The WTForms are instantiated in the app.py file. For example, in the create_shows() function, the Show form is instantiated from the command: form = ShowForm(). To manage the request from Flask-WTF form, each field from the form has a data attribute containing the value from user input. For example, to handle the venue_id data from the Venue form, you can use: show = Show(venue_id=form.venue_id.data), instead of using request.form['venue_id'].
+起始代码使用名为 Flask-WTF 的交互式表单构建器库。此库提供了有用的功能，例如表单验证和错误处理。您可以仔细阅读 forms.py 文件中的 Show、Venue 和 Artist 表单构建器。WTForms 在 app.py 文件中实例化。例如，在 create_shows() 函数中，Show 窗体是从命令实例化的： form = ShowForm() 。要管理来自 Flask-WTF 表单的请求，表单中的每个字段都有一个 data 属性，其中包含用户输入的值。例如，若要处理“场地”窗体 venue_id 中的数据，可以使用： show = Show(venue_id=form.venue_id.data) ，而不是 request.form['venue_id'] 。
+
+Acceptance Criteria 验收标准
+The web app should be successfully connected to a PostgreSQL database. A local connection to a database on your local computer is fine.
+Web 应用应成功连接到 PostgreSQL 数据库。与本地计算机上的数据库建立本地连接是可以的。
+There should be no use of mock data throughout the app. The data structure of the mock data per controller should be kept unmodified when satisfied by real data.
+在整个应用程序中不应使用模拟数据。当满足真实数据时，每个控制器的模拟数据的数据结构应保持不修改。
+The application should behave just as before with mock data, but now uses real data from a real backend server, with real search functionality. For example:
+应用程序的行为应该与以前一样，使用模拟数据，但现在使用来自真实后端服务器的真实数据，并具有真正的搜索功能。例如：
+when a user submits a new artist record, the user should be able to see it populate in /artists, as well as search for the artist by name and have the search return results.
+当用户提交新的艺术家记录时，用户应该能够看到它填充在 /artists 中，并按姓名搜索艺术家并让搜索返回结果。
+I should be able to go to the URL /artist/<artist-id> to visit a particular artist’s page using a unique ID per artist and see real data about that particular artist.
+我应该能够转到 URL /artist/<artist-id> 以使用每个艺术家的唯一 ID 访问特定艺术家的页面，并查看有关该特定艺术家的真实数据。
+Venues should continue to be displayed in groups by city and state.
+场馆应继续按城市和州分组显示。
+Search should be allowed to be partial string matching and case-insensitive.
+应允许搜索部分字符串匹配且不区分大小写。
+Past shows versus Upcoming shows should be distinguished in Venue and Artist pages.
+过去的演出与即将到来的演出应在场地和艺术家页面中区分。
+A user should be able to click on the venue for an upcoming show on the Artist's page, and on that Venue's page, see the same show in the Venue Page's upcoming shows section.
+用户应该能够在艺术家页面上单击即将举行的演出的场地，并在该场地页面上，在场地页面的“即将举行的演出”部分查看同一演出。
+As a fellow developer on this application, I should be able to run flask db migrate, and have my local database (once set up and created) be populated with the right tables to run this application and have it interact with my local postgres server, serving the application's needs completely with real data I can seed my local database with.
+作为此应用程序的开发人员，我应该能够运行 flask db migrate ，并让我的本地数据库（一旦设置和创建）填充正确的表来运行此应用程序，并让它与我的本地 postgres 服务器交互，完全满足应用程序的需求，我可以为我的本地数据库提供种子。
+The models should be completed (see TODOs in the Models section of app.py) and model the objects used throughout Fyyur.
+模型应完成（请参阅部分中的 app.py TODO）， Models 并对整个 Fyyur 中使用的对象进行建模。
+Define the models in a different file to follow Separation of Concerns(opens in a new tab)
+在不同的文件中定义模型以遵循关注点分离 design principles. You can refactor the models to a new file, such as models.py.
+设计原则。您可以将模型重构为新文件，例如 models.py .
+The right type of relationship and parent-child dynamics between models should be accurately identified and fit the needs of this particular application.
+应准确识别模型之间的正确关系类型和父子动态，并满足此特定应用的需求。
+The relationship between the models should be accurately configured, and referential integrity amongst the models should be preserved.
+应准确配置模型之间的关系，并保留模型之间的参照完整性。
+flask db migrate should work, and populate my local Postgres database with properly configured tables for this application's objects, including proper columns, column data types, constraints, defaults, and relationships that completely satisfy the needs of this application. The proper type of relationship between venues, artists, and shows should be configured.
+flask db migrate 应该可以工作，并使用为此应用程序的对象正确配置的表填充我的本地 Postgres 数据库，包括完全满足此应用程序需求的正确列、列数据类型、约束、默认值和关系。应配置场地、艺术家和表演之间的正确关系类型。
+Stand Out 脱颖而出
+
+Looking to go above and beyond? This is the right section for you! Here are some challenges to make your submission stand out:
+想要超越自我？这是适合您的部分！以下是使您的提交脱颖而出的一些挑战：
+
+Implement artist availability. An artist can list available times that they can be booked. Restrict venues from being able to create shows with artists during a show time that is outside of their availability.
+实现艺术家可用性。艺术家可以列出可以预订的可用时间。限制场馆在超出其可用性的演出时间内与艺术家一起创作演出。
+Show Recent Listed Artists and Recently Listed Venues on the homepage, returning results for Artists and Venues sorting by newly created. Limit to the 10 most recently listed items.
+在主页上显示最近列出的艺术家和最近列出的场地，返回按新创建的艺术家和场地排序的结果。限制为最近列出的 10 个项目。
+Implement Search Artists by City and State, and Search Venues by City and State. Searching by "San Francisco, CA" should return all artists or venues in San Francisco, CA.
+实现按城市和州搜索艺术家，以及按城市和州搜索场地。按“San Francisco， CA”搜索应返回加利福尼亚州旧金山的所有艺术家或场地。
+Best of luck with your final project! Fyyur depends on you!
+祝你的最终项目好运！Fyyur 取决于你！
+
+[templates/pages]
+# 已完成。定义呈现到网站的页面。这些模板根据传递到模板视图的数据呈现视图，这些数据位于中app.py定义的控制器中。这些页面成功地向用户表示数据，并且已经为您定义了数据。
+
+[templates/layouts]
+# 已完成。定义页面可以包含的布局，以定义给定页面的页脚和页眉代码。
+
+[templates/forms]
+# 已完成。定义用于创建新艺术家、表演和场地的窗体。
+
+[app.py]
+# 缺少功能。定义与用户URL匹配的路由，以及处理数据并向用户呈现视图的控制器。这是您将要处理的主文件，用于连接和操作数据库，并根据URL向用户呈现包含数据的视图。
+
+[Models in app.py]
+# 缺少功能。定义用于设置数据库表的数据模型。
+
+[config.py]
+# 缺少功能。存储配置变量和指令，与主应用程序代码分开。这是您需要连接到数据库的位置。
+
