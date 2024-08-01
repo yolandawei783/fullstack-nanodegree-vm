@@ -117,5 +117,5 @@ dropdb bookshelf_test
 createdb bookshelf_test
 \q
 psql bookshelf_test < books.psql
-python test_flaskr.py
+python3 test_flaskr.py
 ```

@@ -1,0 +1,49 @@
+0 verbose cli /opt/homebrew/Cellar/node/22.5.1/bin/node /opt/homebrew/bin/npm
+1 info using npm@10.8.2
+2 info using node@v22.5.1
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/yolandawei/Library/Mobile Documents/com~apple~CloudDocs/fullstack/cd0037-API-Development-and-Documentation-exercises/1_Requests_Starter/frontend/.npmrc
+5 silly config load:file:/Users/yolandawei/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm install fsevents@latest
+8 verbose argv "install" "fsevents@latest"
+9 verbose logfile logs-max:10 dir:/Users/yolandawei/.npm/_logs/2024-07-30T21_31_26_666Z-
+10 verbose logfile /Users/yolandawei/.npm/_logs/2024-07-30T21_31_26_666Z-debug-0.log
+11 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+12 silly logfile start cleaning logs, removing 1 files
+13 silly logfile done cleaning log files
+14 silly packumentCache corgi:https://mirrors.tuna.tsinghua.edu.cn/npm/fsevents cache-miss
+15 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+16 http fetch GET 404 https://mirrors.tuna.tsinghua.edu.cn/npm/fsevents 428ms (cache skip)
+17 silly packumentCache corgi:https://mirrors.tuna.tsinghua.edu.cn/npm/fsevents cache-miss
+18 http fetch GET 404 https://mirrors.tuna.tsinghua.edu.cn/npm/fsevents 56ms (cache skip)
+19 verbose stack HttpErrorGeneral: 404 Not Found - GET https://mirrors.tuna.tsinghua.edu.cn/npm/fsevents
+19 verbose stack     at /opt/homebrew/lib/node_modules/npm/node_modules/npm-registry-fetch/lib/check-response.js:95:15
+19 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+19 verbose stack     at async RegistryFetcher.packument (/opt/homebrew/lib/node_modules/npm/node_modules/pacote/lib/registry.js:90:19)
+19 verbose stack     at async RegistryFetcher.manifest (/opt/homebrew/lib/node_modules/npm/node_modules/pacote/lib/registry.js:128:23)
+19 verbose stack     at async /opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:512:22
+19 verbose stack     at async Promise.all (index 0)
+19 verbose stack     at async #add (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:501:5)
+19 verbose stack     at async #applyUserRequestsToNode (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:470:7)
+19 verbose stack     at async #applyUserRequests (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:405:7)
+19 verbose stack     at async Arborist.buildIdealTree (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:180:7)
+20 verbose statusCode 404
+21 verbose pkgid fsevents@latest
+22 error code E404
+23 error 404 Not Found - GET https://mirrors.tuna.tsinghua.edu.cn/npm/fsevents
+24 error 404
+25 error 404  'fsevents@latest' is not in this registry.
+26 error 404
+27 error 404 Note that you can also install from a
+28 error 404 tarball, folder, http url, or git url.
+29 silly unfinished npm timer reify 1722375086805
+30 silly unfinished npm timer reify:loadTrees 1722375086806
+31 silly unfinished npm timer idealTree:userRequests 1722375087051
+32 verbose cwd /Users/yolandawei/Library/Mobile Documents/com~apple~CloudDocs/fullstack/cd0037-API-Development-and-Documentation-exercises/1_Requests_Starter/frontend
+33 verbose os Darwin 23.5.0
+34 verbose node v22.5.1
+35 verbose npm  v10.8.2
+36 verbose exit 1
+37 verbose code 1
+38 error A complete log of this run can be found in: /Users/yolandawei/.npm/_logs/2024-07-30T21_31_26_666Z-debug-0.log
